@@ -1,19 +1,20 @@
 package Servicio;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Persona {
-    @Getter private int clave;
-    @Getter private String nombre;
-    @Getter private String correo;
-    @Getter private String cargo;
-    @Getter private double sueldo;
+    @Getter @Setter int id;
+    @Getter @Setter private String nombre;
+    @Getter @Setter private String correo;
+    @Getter @Setter private String cargo;
+    @Getter @Setter private double sueldo;
 
-    public Persona(double sueldo, String cargo, String correo, String nombre, int clave) {
-        this.sueldo = sueldo;
-        this.cargo = cargo;
-        this.correo = correo;
+    public Persona(int id, String nombre, String correo, String cargo, double sueldo) {
+        this.id = id;
         this.nombre = nombre;
-        this.clave = clave;
+        this.correo = correo;
+        this.cargo = cargo;
+        this.sueldo = sueldo;
     }
 }

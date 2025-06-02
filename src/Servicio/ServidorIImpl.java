@@ -3,6 +3,7 @@ package Servicio;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ServidorIImpl extends UnicastRemoteObject implements Servidor {
 
@@ -25,6 +26,46 @@ public class ServidorIImpl extends UnicastRemoteObject implements Servidor {
 
         } else {
             return "No existen los datos del empleado";
+        }
+    }
+
+    @Override
+    public String eliminarPersona(int id) throws Exception {
+        try {
+            Consulta.deletePersona(id);
+            return "Empleado eliminado";
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return "Error al eliminar al empleado";
+        }
+    }
+    @Override
+    public String registrarPersona(Persona persona) throws Exception {
+        try {
+            int id = persona.getId();
+            if(Objects.equals(consultar(id), "No existen los datos del empleado")){
+                Consulta.addPersona(persona);
+            }
+            else {
+                return "El id ya esta registrado";
+            }
+            return "Empleado registrado";
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return "Error al eliminar al empleado";
+        }
+    }
+    @Override
+    public String modificarPersona(Persona persona) throws Exception {
+        try {
+            Consulta.updatePersona(persona);
+            return "Empleado actualizado";
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return "Error al actualizar al empleado";
         }
     }
 }
